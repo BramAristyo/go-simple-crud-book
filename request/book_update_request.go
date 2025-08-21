@@ -1,6 +1,6 @@
-package entity
+package request
 
-type Book struct {
+type BookUpdateRequest struct {
 	Id     int
 	Title  string
 	Author string

@@ -9,6 +9,7 @@ import (
 )
 
 type CategoryRepositoryImpl struct {
+	
 }
 
 func (repository *CategoryRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, book entity.Book) entity.Book {
@@ -31,17 +32,17 @@ func (repository *CategoryRepositoryImpl) Update(ctx context.Context, tx *sql.Tx
 	return book
 }
 
-func (repository *CategoryRepositoryImpl) Delete(ctx context.Context, tx *sql.Tx, book entity.Book) bool{
+func (repository *CategoryRepositoryImpl) Delete(ctx context.Context, tx *sql.Tx, bookId int) bool{
 	q := "DELETE FROM books where id = ?"
-	_, err := tx.ExecContext(ctx, q, book.Id)
+	_, err := tx.ExecContext(ctx, q, bookId)
 	helper.PanicIfErr(err)
 
 	return true
 }
 
-func (repository *CategoryRepositoryImpl) FindById(ctx context.Context, tx *sql.Tx, categoryId int) (entity.Book, error) {
+func (repository *CategoryRepositoryImpl) FindById(ctx context.Context, tx *sql.Tx, bookId int) (entity.Book, error) {
 	q := "SELECT id, title, author, year FROM books where id = ?"
-	rows, err := tx.QueryContext(ctx, q, categoryId)
+	rows, err := tx.QueryContext(ctx, q, bookId)
 	helper.PanicIfErr(err)
 
 	book := entity.Book{}
