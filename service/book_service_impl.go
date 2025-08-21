@@ -8,14 +8,20 @@ import (
 	"simple-restful-api/repository"
 	"simple-restful-api/request"
 	"simple-restful-api/response"
+
+	"github.com/go-playground/validator/v10"
 )
 
 type BookServiceImpl struct {
 	BookRepository repository.BookRepository
 	DB *sql.DB
+	Validate *validator.Validate
 }
 
 func (service *BookServiceImpl) Create(ctx context.Context, request request.BookCreateRequest) response.BookResponse {
+	err := service.Validate.Struct(request)
+	helper.PanicIfErr(err)
+
 	tx, err := service.DB.Begin()
 	helper.PanicIfErr(err)
 	defer helper.CommitOrRollBack(tx)
@@ -31,6 +37,9 @@ func (service *BookServiceImpl) Create(ctx context.Context, request request.Book
 }
 
 func (service *BookServiceImpl) Update(ctx context.Context, request request.BookUpdateRequest) response.BookResponse {
+	err := service.Validate.Struct(request)
+	helper.PanicIfErr(err)
+	
 	tx, err := service.DB.Begin()
 	helper.PanicIfErr(err)
 	defer helper.CommitOrRollBack(tx)
