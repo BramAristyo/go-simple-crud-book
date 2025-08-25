@@ -12,6 +12,10 @@ type CategoryRepositoryImpl struct {
 	
 }
 
+func NewBookRepository() BookRepository {
+	return &CategoryRepositoryImpl{}
+}
+
 func (repository *CategoryRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, book entity.Book) entity.Book {
 	q := "INSERT INTO books(title, author, year) VALUES (?, ?, ?)"
 	res, err := tx.ExecContext(ctx, q, book.Title, book.Author, book.Year)

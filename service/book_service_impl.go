@@ -18,6 +18,14 @@ type BookServiceImpl struct {
 	Validate *validator.Validate
 }
 
+func NewBookService(bookRepository repository.BookRepository, DB *sql.DB, validate *validator.Validate) BookService {
+	return &BookServiceImpl{
+		BookRepository: bookRepository,
+		DB: DB,
+		Validate: validate,
+	}
+}
+
 func (service *BookServiceImpl) Create(ctx context.Context, request request.BookCreateRequest) response.BookResponse {
 	err := service.Validate.Struct(request)
 	helper.PanicIfErr(err)

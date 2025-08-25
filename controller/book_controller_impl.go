@@ -15,10 +15,16 @@ type BookControllerImpl struct {
 	BookService service.BookService
 }
 
+func NewBookController(bookService service.BookService) BookController {
+	return &BookControllerImpl{
+		BookService: bookService,
+	}
+}
+
 func (controller *BookControllerImpl) Create(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	bookCreateRequest := request.BookUpdateRequest{}
+	bookCreateRequest := request.BookCreateRequest{}
 	helper.ReadRequestBody(r, &bookCreateRequest)
-	bookResponse := service.BookService.Create(r.Context(), bookCreateRequest)
+	bookResponse := controller.BookService.Create(r.Context(), bookCreateRequest)
 
 	webResponse := response.WebResponse{
 		Code: 200,
@@ -39,7 +45,7 @@ func (controller *BookControllerImpl) Update(w http.ResponseWriter, r *http.Requ
 
 	bookUpdateRequest.Id = Id
 
-	bookResponse := service.BookService.Update(r.Context(), bookUpdateRequest)
+	bookResponse := controller.BookService.Update(r.Context(), bookUpdateRequest)
 
 	webResponse := response.WebResponse{
 		Code: 200,
@@ -55,7 +61,7 @@ func (controller *BookControllerImpl) Delete(w http.ResponseWriter, r *http.Requ
 	Id, err := strconv.Atoi(bookId)
 	helper.PanicIfErr(err)
 
-	service.BookService.Delete(r.Context(), Id)
+	controller.BookService.Delete(r.Context(), Id)
 
 	webResponse := response.WebResponse{
 		Code: 200,
@@ -70,7 +76,7 @@ func (controller *BookControllerImpl) FindById(w http.ResponseWriter, r *http.Re
 	Id, err := strconv.Atoi(bookId)
 	helper.PanicIfErr(err)
 
-	bookResponse := service.BookService.FindById(r.Context(), Id)
+	bookResponse := controller.BookService.FindById(r.Context(), Id)
 
 	webResponse := response.WebResponse{
 		Code: 200,
@@ -82,7 +88,7 @@ func (controller *BookControllerImpl) FindById(w http.ResponseWriter, r *http.Re
 }
 
 func (controller *BookControllerImpl) FindAll(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	bookResponses := service.BookService.FindAll(r.Context())
+	bookResponses := controller.BookService.FindAll(r.Context())
 
 	webResponse := response.WebResponse{
 		Code: 200,
