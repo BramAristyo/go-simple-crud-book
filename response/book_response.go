@@ -3,10 +3,10 @@ package response
 import "simple-restful-api/model/entity"
 
 type BookResponse struct {
-	Id     int
-	Title  string
-	Author string
-	Year   int
+	Id     int `json:"id"`
+	Title  string `json:"title"`
+	Author string `json:"author"`
+	Year   int `json:"year"`
 }
 
 func ToBookResponse(book entity.Book) BookResponse{

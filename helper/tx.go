@@ -5,12 +5,13 @@ import (
 )
 
 func CommitOrRollBack(tx *sql.Tx) {
-	err := recover()
-		if err != nil {
-			errorRollBack := tx.Rollback()
-			PanicIfErr(errorRollBack)
-		} else {
-			errorCommit := tx.Commit()
-			PanicIfErr(errorCommit)
-		}
+    err := recover()
+	if err != nil {
+		errorRollback := tx.Rollback()
+		PanicIfErr(errorRollback)
+		panic(err)
+	} else {
+		errorCommit := tx.Commit()
+		PanicIfErr(errorCommit)
+	}
 }

@@ -8,15 +8,15 @@ import (
 	"simple-restful-api/model/entity"
 )
 
-type CategoryRepositoryImpl struct {
+type BookRepositoryImpl struct {
 	
 }
 
 func NewBookRepository() BookRepository {
-	return &CategoryRepositoryImpl{}
+	return &BookRepositoryImpl{}
 }
 
-func (repository *CategoryRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, book entity.Book) entity.Book {
+func (repository *BookRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, book entity.Book) entity.Book {
 	q := "INSERT INTO books(title, author, year) VALUES (?, ?, ?)"
 	res, err := tx.ExecContext(ctx, q, book.Title, book.Author, book.Year)
 	helper.PanicIfErr(err)
@@ -28,26 +28,27 @@ func (repository *CategoryRepositoryImpl) Save(ctx context.Context, tx *sql.Tx, 
 	return book
 }
 
-func (repository *CategoryRepositoryImpl) Update(ctx context.Context, tx *sql.Tx, book entity.Book) entity.Book {
-	q := "UPDATE books SET title = ?, author = ?, year = ? WHERE id = ?"
-	_, err := tx.ExecContext(ctx, q, book.Title, book.Author, book.Year, book.Id)
-	helper.PanicIfErr(err)
-
-	return book
+func (repository *BookRepositoryImpl) Update(ctx context.Context, tx *sql.Tx, book entity.Book) entity.Book {
+    if tx == nil {
+        panic(errors.New("transaction is nil"))
+    }
+    q := "UPDATE books SET title = ?, author = ?, year = ? WHERE id = ?"
+    _, err := tx.ExecContext(ctx, q, book.Title, book.Author, book.Year, book.Id)
+    helper.PanicIfErr(err)
+    return book
 }
 
-func (repository *CategoryRepositoryImpl) Delete(ctx context.Context, tx *sql.Tx, bookId int) bool{
+func (repository *BookRepositoryImpl) Delete(ctx context.Context, tx *sql.Tx, bookId int){
 	q := "DELETE FROM books where id = ?"
 	_, err := tx.ExecContext(ctx, q, bookId)
 	helper.PanicIfErr(err)
-
-	return true
 }
 
-func (repository *CategoryRepositoryImpl) FindById(ctx context.Context, tx *sql.Tx, bookId int) (entity.Book, error) {
+func (repository *BookRepositoryImpl) FindById(ctx context.Context, tx *sql.Tx, bookId int) (entity.Book, error) {
 	q := "SELECT id, title, author, year FROM books where id = ?"
 	rows, err := tx.QueryContext(ctx, q, bookId)
 	helper.PanicIfErr(err)
+	defer rows.Close()
 
 	book := entity.Book{}
 	if rows.Next() {
@@ -60,10 +61,11 @@ func (repository *CategoryRepositoryImpl) FindById(ctx context.Context, tx *sql.
 
 }
 
-func (repository *CategoryRepositoryImpl) FindAll(ctx context.Context, tx *sql.Tx) []entity.Book {
+func (repository *BookRepositoryImpl) FindAll(ctx context.Context, tx *sql.Tx) []entity.Book {
 	q := "SELECT id, title, author, year FROM books"
 	rows, err := tx.QueryContext(ctx, q)
 	helper.PanicIfErr(err)
+	defer rows.Close()
 
 	var books []entity.Book
 	for rows.Next() {

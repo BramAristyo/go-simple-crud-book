@@ -66,7 +66,7 @@ func (service *BookServiceImpl) Update(ctx context.Context, request request.Book
 	return response.ToBookResponse(book)
 }
 
-func (service *BookServiceImpl) Delete(ctx context.Context, bookId int) bool {
+func (service *BookServiceImpl) Delete(ctx context.Context, bookId int) {
 	tx, err := service.DB.Begin()
 	helper.PanicIfErr(err)
 	defer helper.CommitOrRollBack(tx)
@@ -75,7 +75,6 @@ func (service *BookServiceImpl) Delete(ctx context.Context, bookId int) bool {
 	helper.PanicIfErr(err)
 
 	service.BookRepository.Delete(ctx, tx, bookId)
-	return true
 }
 
 func (service *BookServiceImpl) FindById(ctx context.Context, bookId int) response.BookResponse {
