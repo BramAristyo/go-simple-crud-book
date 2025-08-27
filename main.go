@@ -3,9 +3,8 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"simple-restful-api/config"
+	"simple-restful-api/app"
 	"simple-restful-api/controller"
-	"simple-restful-api/exception"
 	"simple-restful-api/helper"
 	"simple-restful-api/middleware"
 	"simple-restful-api/repository"
@@ -14,25 +13,15 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 
 	"github.com/go-playground/validator/v10"
-	"github.com/julienschmidt/httprouter"
 )
 
 func main() {
-	db := config.NewDB()
+	db := app.NewDB()
 	validate := validator.New()
 	bookRepository := repository.NewBookRepository()
 	bookService := service.NewBookService(bookRepository, db, validate)
 	bookController := controller.NewBookController(bookService)
-
-	router := httprouter.New()
-
-	router.GET("/api/book",bookController.FindAll)
-	router.GET("/api/book/:bookId",bookController.FindById)
-	router.POST("/api/book", bookController.Create)
-	router.PATCH("/api/book/:bookId", bookController.Update)
-	router.DELETE("/api/book/:bookId", bookController.Delete)
-
-	router.PanicHandler = exception.ErrorHandler
+	router := app.NewRouter(bookController)
 
 	server := http.Server{
 		Addr: "localhost:8000",

@@ -1,0 +1,946 @@
+{
+	"info": {
+		"_postman_id": "2b5f5322-5ae3-4ac5-a143-2d72e2eb41ff",
+		"name": "Book Go",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "42138720"
+	},
+	"item": [
+		{
+			"name": "Get Book All",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IiIsImV4cCI6MTc1NTkwODQ0OCwibmJmIjoxNzU1ODIyMDQ4LCJpYXQiOjE3NTU4MjIwNDh9.PDgtE-knIvKLIQdFN66ctVBM-9r_RiEmWDvghIYS9A4",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "MyAPIKey",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/book",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"book"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IiIsImV4cCI6MTc1NTkwODQ0OCwibmJmIjoxNzU1ODIyMDQ4LCJpYXQiOjE3NTU4MjIwNDh9.PDgtE-knIvKLIQdFN66ctVBM-9r_RiEmWDvghIYS9A4",
+								"type": "text"
+							},
+							{
+								"key": "x-api-key",
+								"value": "MyAPIKey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/book",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 27 Aug 2025 18:31:28 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "135"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"status\": \"OK\",\n    \"data\": [\n        {\n            \"id\": 2,\n            \"title\": \"The Pragmatic Programmer\",\n            \"author\": \"Andrew Hunt & David Thomas\",\n            \"year\": 1999\n        }\n    ]\n}"
+				},
+				{
+					"name": "Error 401",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IiIsImV4cCI6MTc1NTkwODQ0OCwibmJmIjoxNzU1ODIyMDQ4LCJpYXQiOjE3NTU4MjIwNDh9.PDgtE-knIvKLIQdFN66ctVBM-9r_RiEmWDvghIYS9A4",
+								"type": "text"
+							},
+							{
+								"key": "x-api-key",
+								"value": "MyAPIKey",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/book",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 27 Aug 2025 18:39:05 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 401,\n    \"status\": \"UNAUTHORIZED\",\n    \"data\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Book",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "MyAPIKey",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Design Patterns: Elements of Reusable Object-Oriented Software\",\r\n    \"author\": \"Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides\",\r\n    \"year\": 1994\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/book/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"book",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Error 400",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "MyAPIKey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"author\": \"Andrew Hunt & David Thomas\",\r\n  \"year\": 1999\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/book/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								""
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 27 Aug 2025 18:32:34 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "140"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 400,\n    \"status\": \"BAD REQUEST\",\n    \"data\": \"Key: 'BookCreateRequest.Title' Error:Field validation for 'Title' failed on the 'required' tag\"\n}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "MyAPIKey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Design Patterns: Elements of Reusable Object-Oriented Software\",\r\n    \"author\": \"Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides\",\r\n    \"year\": 1994\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/book/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 27 Aug 2025 18:33:29 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "196"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"status\": \"OK\",\n    \"data\": {\n        \"id\": 3,\n        \"title\": \"Design Patterns: Elements of Reusable Object-Oriented Software\",\n        \"author\": \"Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides\",\n        \"year\": 1994\n    }\n}"
+				},
+				{
+					"name": "Error 401",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "MyAPIKey",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Design Patterns: Elements of Reusable Object-Oriented Software\",\r\n    \"author\": \"Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides\",\r\n    \"year\": 1994\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/book/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								""
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 27 Aug 2025 18:38:41 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 401,\n    \"status\": \"UNAUTHORIZED\",\n    \"data\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Book",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "MyAPIKey",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"author\": \"Robert C. Martin\",\r\n    \"year\": 1991\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/book/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"book",
+						"3"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Error 404",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "MyAPIKey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"title\": \"Clean Architecture\",\r\n    \"author\": \"Robert C. Martin\",\r\n    \"year\": 1991\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/book/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								"1"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 27 Aug 2025 18:34:10 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "61"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 404,\n    \"status\": \"NOT FOUND\",\n    \"data\": \"book is not found\"\n}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "MyAPIKey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Clean Architecture\",\r\n    \"author\": \"Robert C. Martin\",\r\n    \"year\": 1991\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/book/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 27 Aug 2025 18:34:35 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "112"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"status\": \"OK\",\n    \"data\": {\n        \"id\": 2,\n        \"title\": \"Clean Architecture\",\n        \"author\": \"Robert C. Martin\",\n        \"year\": 1991\n    }\n}"
+				},
+				{
+					"name": "Error 400",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "MyAPIKey",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"author\": \"Robert C. Martin\",\r\n    \"year\": 1991\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/book/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								"3"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 27 Aug 2025 18:38:03 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "140"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 400,\n    \"status\": \"BAD REQUEST\",\n    \"data\": \"Key: 'BookUpdateRequest.Title' Error:Field validation for 'Title' failed on the 'required' tag\"\n}"
+				},
+				{
+					"name": "Error 401",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "MyAPIKey",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"author\": \"Robert C. Martin\",\r\n    \"year\": 1991\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/api/book/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								"3"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 27 Aug 2025 18:38:22 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 401,\n    \"status\": \"UNAUTHORIZED\",\n    \"data\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Show Book",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IiIsImV4cCI6MTc1NTkwODQ0OCwibmJmIjoxNzU1ODIyMDQ4LCJpYXQiOjE3NTU4MjIwNDh9.PDgtE-knIvKLIQdFN66ctVBM-9r_RiEmWDvghIYS9A4",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "MyAPIKey",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/book/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"book",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Error 404",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IiIsImV4cCI6MTc1NTkwODQ0OCwibmJmIjoxNzU1ODIyMDQ4LCJpYXQiOjE3NTU4MjIwNDh9.PDgtE-knIvKLIQdFN66ctVBM-9r_RiEmWDvghIYS9A4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/book/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								"1"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 27 Aug 2025 18:19:58 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "61"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 404,\n    \"status\": \"NOT FOUND\",\n    \"data\": \"book is not found\"\n}"
+				},
+				{
+					"name": "Error 401",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IiIsImV4cCI6MTc1NTkwODQ0OCwibmJmIjoxNzU1ODIyMDQ4LCJpYXQiOjE3NTU4MjIwNDh9.PDgtE-knIvKLIQdFN66ctVBM-9r_RiEmWDvghIYS9A4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/book/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								"2"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 27 Aug 2025 18:35:43 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 401,\n    \"status\": \"UNAUTHORIZED\",\n    \"data\": null\n}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IiIsImV4cCI6MTc1NTkwODQ0OCwibmJmIjoxNzU1ODIyMDQ4LCJpYXQiOjE3NTU4MjIwNDh9.PDgtE-knIvKLIQdFN66ctVBM-9r_RiEmWDvghIYS9A4",
+								"type": "text"
+							},
+							{
+								"key": "x-api-key",
+								"value": "MyAPIKey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/book/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 27 Aug 2025 18:36:10 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "112"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"status\": \"OK\",\n    \"data\": {\n        \"id\": 2,\n        \"title\": \"Clean Architecture\",\n        \"author\": \"Robert C. Martin\",\n        \"year\": 1991\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Show Book Copy",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IiIsImV4cCI6MTc1NTkwODQ0OCwibmJmIjoxNzU1ODIyMDQ4LCJpYXQiOjE3NTU4MjIwNDh9.PDgtE-knIvKLIQdFN66ctVBM-9r_RiEmWDvghIYS9A4",
+						"type": "text"
+					},
+					{
+						"key": "x-api-key",
+						"value": "MyAPIKey",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/book/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"book",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Error 401",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IiIsImV4cCI6MTc1NTkwODQ0OCwibmJmIjoxNzU1ODIyMDQ4LCJpYXQiOjE3NTU4MjIwNDh9.PDgtE-knIvKLIQdFN66ctVBM-9r_RiEmWDvghIYS9A4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/book/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								"1"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 27 Aug 2025 18:36:20 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 401,\n    \"status\": \"UNAUTHORIZED\",\n    \"data\": null\n}"
+				},
+				{
+					"name": "Error 404",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IiIsImV4cCI6MTc1NTkwODQ0OCwibmJmIjoxNzU1ODIyMDQ4LCJpYXQiOjE3NTU4MjIwNDh9.PDgtE-knIvKLIQdFN66ctVBM-9r_RiEmWDvghIYS9A4",
+								"type": "text"
+							},
+							{
+								"key": "x-api-key",
+								"value": "MyAPIKey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/book/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								"1"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 27 Aug 2025 18:36:52 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "61"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 404,\n    \"status\": \"NOT FOUND\",\n    \"data\": \"book is not found\"\n}"
+				},
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IiIsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwicm9sZSI6IiIsImV4cCI6MTc1NTkwODQ0OCwibmJmIjoxNzU1ODIyMDQ4LCJpYXQiOjE3NTU4MjIwNDh9.PDgtE-knIvKLIQdFN66ctVBM-9r_RiEmWDvghIYS9A4",
+								"type": "text"
+							},
+							{
+								"key": "x-api-key",
+								"value": "MyAPIKey",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/api/book/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"book",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 27 Aug 2025 18:37:16 GMT"
+						},
+						{
+							"key": "Content-Length",
+							"value": "39"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"status\": \"OK\",\n    \"data\": null\n}"
+				}
+			]
+		}
+	]
+}
