@@ -7,6 +7,7 @@ import (
 	"simple-restful-api/controller"
 	"simple-restful-api/exception"
 	"simple-restful-api/helper"
+	"simple-restful-api/middleware"
 	"simple-restful-api/repository"
 	"simple-restful-api/service"
 
@@ -35,7 +36,7 @@ func main() {
 
 	server := http.Server{
 		Addr: "localhost:8000",
-		Handler: router,
+		Handler: middleware.NewAuthMiddleware(router),
 	}
 
 	fmt.Println("Server successfully connected to port 8000")
