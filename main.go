@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"simple-restful-api/config"
 	"simple-restful-api/controller"
+	"simple-restful-api/exception"
 	"simple-restful-api/helper"
 	"simple-restful-api/repository"
 	"simple-restful-api/service"
@@ -29,6 +30,8 @@ func main() {
 	router.POST("/api/book", bookController.Create)
 	router.PATCH("/api/book/:bookId", bookController.Update)
 	router.DELETE("/api/book/:bookId", bookController.Delete)
+
+	router.PanicHandler = exception.ErrorHandler
 
 	server := http.Server{
 		Addr: "localhost:8000",

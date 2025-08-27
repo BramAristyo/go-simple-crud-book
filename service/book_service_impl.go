@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"database/sql"
+	"simple-restful-api/exception"
 	"simple-restful-api/helper"
 	"simple-restful-api/model/entity"
 	"simple-restful-api/repository"
@@ -53,7 +54,9 @@ func (service *BookServiceImpl) Update(ctx context.Context, request request.Book
 	defer helper.CommitOrRollBack(tx)
 
 	_, err = service.BookRepository.FindById(ctx, tx, request.Id)
-	helper.PanicIfErr(err)
+	if err != nil {
+		panic(exception.NewNotFoundError(err.Error()))
+	}
 
 	book := entity.Book{
 		Id: request.Id,
@@ -72,7 +75,9 @@ func (service *BookServiceImpl) Delete(ctx context.Context, bookId int) {
 	defer helper.CommitOrRollBack(tx)
 
 	_, err = service.BookRepository.FindById(ctx, tx, bookId)
-	helper.PanicIfErr(err)
+	if err != nil {
+		panic(exception.NewNotFoundError(err.Error()))
+	}
 
 	service.BookRepository.Delete(ctx, tx, bookId)
 }
@@ -83,7 +88,9 @@ func (service *BookServiceImpl) FindById(ctx context.Context, bookId int) respon
 	defer helper.CommitOrRollBack(tx)
 
 	book, err:= service.BookRepository.FindById(ctx, tx, bookId)
-	helper.PanicIfErr(err)
+	if err != nil {
+		panic(exception.NewNotFoundError(err.Error()))
+	}
 	return response.ToBookResponse(book)
 }
 
